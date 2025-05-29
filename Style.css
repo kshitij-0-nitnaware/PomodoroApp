@@ -45,6 +45,49 @@ body {
   background-color: #0054da;
 }
 
+.Task .inputs {
+  height: 93%;
+}
+
+.Tasks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputs > div {
+  height: 93%;
+  overflow: scroll;
+  scrollbar-width: none;
+  margin-top: 0.5rem;
+}
+
+#check {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+#task p {
+  font-size: 20px;
+  margin-left: 0.5rem;
+  opacity: 0.7 ;
+}
+
+.Tasks i {
+  cursor: pointer;
+  transition: 0.1s linear all;
+}
+
+.Tasks i:hover {
+  color: #ef4444;
+}
+
+.Tasks #task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .Timer-section {
   height: 40%;
   width: 250px;
@@ -70,7 +113,7 @@ body {
 .Timer-section h1 {
   font-size: 75px;
   color: #ffffff;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-variant-numeric: tabular-nums;
   margin: 0.5rem;
   text-align: center;
@@ -98,6 +141,12 @@ body {
   transition: 0.5s linear all;
 }
 
+.disabled-btn {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .Timer-buttons button:hover {
   background: rgb(6, 248, 1);
 }
@@ -113,22 +162,20 @@ body {
 }
 
 .stats-section div {
-    background-color: #e0f2fe;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0);
+  background-color: #e0f2fe;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0);
 }
 
 .stats-section h4 {
-    margin: 1rem;
-    color: #0c4a6e;
+  margin: 1rem;
+  color: #0c4a6e;
 }
 
 .stats-section p {
-    margin: 2rem 2rem 2rem 1rem;
-    font-size: 30px;
-    font-weight: 700;
-    color: #0c4a6e;
+  margin: 2rem 2rem 2rem 1rem;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0c4a6e;
 }
-
-

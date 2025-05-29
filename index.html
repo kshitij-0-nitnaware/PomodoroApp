@@ -10,40 +10,52 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <title>Pmodoro App</title>
   </head>
   <body>
     <div class="container">
       <div class="Task">
         <h3>Task List</h3>
-        <div>
+        <div class="inputs">
           <input type="text" placeholder="Add task" />
           <button>Add</button>
+          <div>
+            <div class="Tasks">
+              <div id="task">
+                <input type="checkbox" id="check"/>
+                <p>Task 1</p>
+              </div>
+              <i class="fa-solid fa-trash"></i>
+            </div>
+          </div>
         </div>
       </div>
       <div class="Timer-section">
         <p>Work Mode</p>
         <h1>25:00</h1>
         <div class="Timer-buttons">
-          <button>Play</button>
-          <button>Pause</button>
-          <button>Reset</button>
+          <button id="playButton">Play</button>
+          <button id="pauseButton">Pause</button>
+          <button id="resetButton">Reset</button>
         </div>
       </div>
       <div class="stats-section">
         <div>
-          <h4>
-            Pomodoros complete
-          </h4>
+          <h4>Pomodoros complete</h4>
           <p>0</p>
         </div>
         <div>
           <h4>Today: Pomodoros</h4>
           <p>0</p>
         </div>
-        <div>
+        <div class="next-Break">
           <h4>Next Break:</h4>
-          <p>in 25:00</p>
+          <p><span>In</span> 25:00</p>
         </div>
       </div>
     </div>
