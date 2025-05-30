@@ -1,3 +1,49 @@
+let taskAddButton = document.getElementById("taskAddButton");
+
+let arr = [];
+
+function clearList() {
+  document.getElementById("taskInput").value = "";
+}
+
+function showList(task) {
+  const taskTable = document.getElementById("taskTable");
+
+  const Tasks = document.createElement("div");
+  Tasks.className = "Tasks";
+  Tasks.style.display = "flex";
+  Tasks.style.alignItems = "center";
+  Tasks.style.justifyContent = "space-between";
+  Tasks.style.margin = "10px 0";
+  Tasks.style.marginBottom = "0.5rem";
+
+  Tasks.innerHTML = `
+    <div style="display: flex; align-items: center;">
+      <input type="checkbox" style="transform: scale(1.5); margin-right: 10px;"/>
+      <p style="margin: 0; font-size: 20px; opacity: 0.7;">${task}</p>
+    </div>
+    <i class="fa-solid fa-trash" style="cursor: pointer;"></i>
+  `;
+
+  taskTable.appendChild(Tasks);
+}
+
+function addTask() {
+  const inputTask = document.getElementById("taskInput").value.trim();
+
+  if (!inputTask) {
+    alert("Please fill all the fields");
+    return;
+  }
+
+  arr.push(inputTask);
+  localStorage.setItem("arr", JSON.stringify(arr));
+  showList(inputTask);
+  clearList();
+}
+
+taskAddButton.addEventListener("click", addTask);
+
 let totalTime = 25 * 60;
 let intervalId = null;
 

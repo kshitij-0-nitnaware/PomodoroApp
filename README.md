@@ -106,7 +106,7 @@ updateDisplay():
 
 -> Enabled again when paused
 
-📝 Task Display (Static for Now)
+📝 Task Display (Task adding functionality is added Now)
 
 -> Task HTML structure in place
 
