@@ -1,125 +1,109 @@
-⏱ Pomodoro App (Basic + Timer Functionality)
+# ⏱ Pomodoro App (Basic + Timer + Task Functionality)
 
-This is a simple Pomodoro Timer web app built using HTML, styled with CSS, and made functional with JavaScript. It focuses on creating a visually clean and user-friendly layout to manage tasks and track Pomodoro sessions effectively.
+This is a simple **Pomodoro Timer Web App** built using **HTML**, styled with **CSS**, and powered by **Vanilla JavaScript**. It helps users manage tasks and track focused Pomodoro sessions efficiently.
 
-🧱 Structure Overview
+---
 
-🗒️ Task Section
+## 🧱 Structure Overview
 
- Header: Task List
+### 🗒️ Task Section
 
--> Input Box to enter task name
+**Header**: Task List
 
--> Add Button with hover animation and primary color styling
+-> Input Box to enter task name  
+-> Add Button with hover animation and primary color styling  
+-> ✅ **Dynamic Task Adding**: Tasks now get added dynamically via button click or pressing Enter  
+-> ✅ **Each task includes**:
+  -> A checkbox to mark task as complete
+  -> A delete (trash) icon to remove the task
+-> ✅ **Checkbox Functionality**:
+  -> When checked → task text gets a `line-through` and opacity reduced
+  -> When unchecked → text returns to normal
+-> ✅ **Task Deletion**:
+  -> Click the trash icon to remove the task from the DOM and localStorage
+-> ✅ **Local Storage Support**:
+  -> Tasks persist after page reload
+  -> All tasks are stored in `localStorage` as an array of strings
 
- Note: Currently static (no dynamic task addition logic implemented yet)
-
-⏲️ Timer Section
+### ⏲️ Timer Section
 
 -> Displays "Work Mode" text
+-> Dynamic Timer starts from `25:00`
+-> Control Buttons:
+  -> ▶ **Play**: Starts countdown
+  -> ⏸ **Pause**: Pauses the countdown
+  -> 🔁 **Reset**: Resets timer to 25:00
+-> Stylish circular buttons using `border-radius: 50%`
+-> Large, centered digits using `font-size: 75px`
+-> Red background for focus and visibility
 
--> Dynamic Timer: starts from 25:00
+### 📊 Stats Section
 
--> Circular Control Buttons:
+-> ✅ **Pomodoros Complete** → 0 (Static for now)
+-> ✅ **Today’s Pomodoros** → 0 (Static for now)
+-> ✅ **Next Break** → Countdown in sync with main timer
+-> Each stat shown in visually styled cards with shadow, border-radius, and soft colors
 
-▶ Play (starts the timer)
+### 🎨 Styling and Fonts
 
-⏸ Pause (pauses the timer)
+-> External CSS file: `style.css`
+-> Responsive layout using flexbox and wrapping
+-> Google Fonts used:
+  -> Poppins
+  -> Montserrat
+  -> Inter
+-> Color Palette:
+  -> Blue for action buttons
+  -> Red for Timer section
+  -> Light blue/gray for stat cards
+-> Hover and transition effects on buttons and inputs
 
-🔁 Reset (resets timer to 25:00)
+### 📜 JavaScript Functionality (`app.js`)
 
--> Stylish circular buttons using border-radius: 50%
+#### ✅ Timer Logic
 
--> Centered layout with vibrant red background and white text
+-> `totalTime = 25 * 60` for 25-minute session
+-> `startTimer()`:
+  -> Begins countdown using `setInterval()`
+  -> Disables Play and Reset buttons
+  -> Shows alert when time is up
+-> `pauseTimer()`:
+  -> Pauses timer and re-enables controls
+-> `resetTimer()`:
+  -> Resets timer to full 25:00
+-> `updateDisplay()`:
+  -> Updates Timer and Next Break display in real-time
+-> `setButtonState()`:
+  -> Adds/removes disabled styling using classes
 
--> Timer digits are large and clear using 75px font-size
+#### ✅ Task Functionality
 
-📊 Stats Section
+-> `addTask()`:
+  -> Adds task to UI and saves to localStorage
+  -> Validates input to prevent empty tasks
+-> `showList(task)`:
+  -> Generates HTML for each task with checkbox and delete icon
+  -> Adds event listeners for checkbox and delete
+-> `taskTable.addEventListener("click", ...)`:
+  -> Uses **event delegation** to handle checkbox interactions
+-> `localStorage`:
+  -> Stores and retrieves task array on load using `JSON.stringify` / `JSON.parse`
 
--> Displays 3 key stats in styled cards:
+### 🛠️ Technologies Used
 
-✅ Pomodoros Complete → 0
+- **HTML5**
+- **CSS3**
+- **Vanilla JavaScript**
+- **Font Awesome** (for icons)
+- **Google Fonts** (for typography)
+- **Local Storage API**
 
-📅 Today’s Pomodoros → 0
+### ✅ Future Improvements
 
-🕒 Next Break → in 25:00
+- Add Pomodoro count tracker
+- Add short/long break modes
 
--> Each block has a clean background, shadow, and rounded edges
 
-🎨 Styling and Fonts
 
--> External CSS file: Style.css
-
--> Responsive design using flex layout with wrapping and spacing
-
--> Used custom fonts from Google Fonts:
-
-Poppins
-
-Montserrat
-
-Inter
-
-Color Palette:
-
--> Blue for buttons
-
--> Red for Timer Section
-
--> Soft blue for Stats section blocks
-
--> Buttons and input boxes have smooth hover transitions
-
-📜 JavaScript Functionality (app.js)
-
-✅ Timer Logic
-
--> totalTime = 25 \* 60: sets session to 25 minutes
-
-startTimer():
-
--> Starts countdown with setInterval()
-
--> Disables Play and Reset buttons while running (via cursor + pointer-events)
-
--> Alerts when time is up and stops the timer
-
-pauseTimer():
-
--> Pauses countdown and re-enables controls
-
-resetTimer():
-
--> Resets timer to full 25:00
-
-updateDisplay():
-
--> Dynamically updates timer and Next Break display
-
-🧠 Button Interactions
-
--> Buttons styled dynamically:
-
--> cursor: not-allowed when disabled
-
--> opacity: 0.6 and pointer-events: none for visual feedback
-
--> Enabled again when paused
-
-📝 Task Display (Task adding functionality is added Now)
-
--> Task HTML structure in place
-
--> Trash icon included with hover effect
-
--> Checkbox enlarged with CSS transform: scale(1.5)
-
-Technologies Used
-
--> HTML5 + CSS3 + Vanilla JavaScript
-
--> Font Awesome for icons
-
--> Google Fonts for typography
 
 

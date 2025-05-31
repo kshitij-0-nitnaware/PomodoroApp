@@ -1,6 +1,23 @@
 let taskAddButton = document.getElementById("taskAddButton");
+let taskInput = document.getElementById("taskInput");
 
 let arr = [];
+
+taskInput.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    addTask();
+  }
+});
+
+window.addEventListener("load", () => {
+  const savedTasks = localStorage.getItem("arr");
+  if (savedTasks) {
+    arr = JSON.parse(savedTasks);
+    arr.forEach((task) => {
+      showList(task);
+    });
+  }
+});
 
 function clearList() {
   document.getElementById("taskInput").value = "";
@@ -9,24 +26,46 @@ function clearList() {
 function showList(task) {
   const taskTable = document.getElementById("taskTable");
 
+  // Create single container for task
   const Tasks = document.createElement("div");
   Tasks.className = "Tasks";
-  Tasks.style.display = "flex";
-  Tasks.style.alignItems = "center";
-  Tasks.style.justifyContent = "space-between";
-  Tasks.style.margin = "10px 0";
-  Tasks.style.marginBottom = "0.5rem";
+  Tasks.style.marginBottom = "1rem";
 
+  // Create task content
   Tasks.innerHTML = `
     <div style="display: flex; align-items: center;">
-      <input type="checkbox" style="transform: scale(1.5); margin-right: 10px;"/>
+      <input type="checkbox" id="Check"; style="transform: scale(1.5); margin-right: 10px; cursor: pointer;"/>
       <p style="margin: 0; font-size: 20px; opacity: 0.7;">${task}</p>
     </div>
-    <i class="fa-solid fa-trash" style="cursor: pointer;"></i>
+    <i class="fa-solid fa-trash delete" style="cursor: pointer;"></i>
   `;
+
+  const deleteIcon = Tasks.querySelector(".delete");
+  deleteIcon.addEventListener("click", () => {
+    Tasks.remove();
+    const index = arr.indexOf(task);
+    if (index > -1) {
+      arr.splice(index, 1);
+      localStorage.setItem("arr", JSON.stringify(arr));
+    }
+  });
+
+  taskTable.addEventListener("click", (event) => {
+    if (event.target.type === "checkbox") {
+      const taskText = event.target.nextElementSibling;
+      if (event.target.checked) {
+        taskText.style.textDecoration = "line-through";
+        taskText.style.opacity = "0.3";
+      } else {
+        taskText.style.textDecoration = "none";
+        taskText.style.opacity = "0.7";
+      }
+    }
+  });
 
   taskTable.appendChild(Tasks);
 }
+
 
 function addTask() {
   const inputTask = document.getElementById("taskInput").value.trim();
