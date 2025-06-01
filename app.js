@@ -1,7 +1,16 @@
 let taskAddButton = document.getElementById("taskAddButton");
 let taskInput = document.getElementById("taskInput");
+let pomodoroCount = 0;
+let completedPomodoros = 0;
+let pomodoroDisplay = document.querySelector(".stats-section div:nth-child(2) p");
+let completedDisplay = document.querySelector(".stats-section div:first-child p");
+let taskTable = document.getElementById("taskTable");
 
 let arr = [];
+
+// Clear completedPomodoros from localStorage
+localStorage.removeItem("completedPomodoros");
+completedDisplay.textContent = "0";
 
 taskInput.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
@@ -17,11 +26,43 @@ window.addEventListener("load", () => {
       showList(task);
     });
   }
+  
+  const savedCount = localStorage.getItem("pomodoroCount");
+  if (savedCount) {
+    pomodoroCount = parseInt(savedCount);
+    pomodoroDisplay.textContent = pomodoroCount;
+  }
+
+  const savedCompleted = localStorage.getItem("completedPomodoros");
+  if (savedCompleted) {
+    completedPomodoros = parseInt(savedCompleted);
+    completedDisplay.textContent = completedPomodoros;
+  }
 });
 
 function clearList() {
   document.getElementById("taskInput").value = "";
 }
+
+// Move event listener outside
+taskTable.addEventListener("click", (event) => {
+  if (event.target.type === "checkbox") {
+    const taskText = event.target.nextElementSibling;
+    if (event.target.checked) {
+      taskText.style.textDecoration = "line-through";
+      taskText.style.opacity = "0.3";
+      completedPomodoros++;
+      completedDisplay.textContent = completedPomodoros;
+      localStorage.setItem("completedPomodoros", completedPomodoros);
+    } else {
+      taskText.style.textDecoration = "none";
+      taskText.style.opacity = "0.7";
+      completedPomodoros--;
+      completedDisplay.textContent = completedPomodoros;
+      localStorage.setItem("completedPomodoros", completedPomodoros);
+    }
+  }
+});
 
 function showList(task) {
   const taskTable = document.getElementById("taskTable");
@@ -42,30 +83,27 @@ function showList(task) {
 
   const deleteIcon = Tasks.querySelector(".delete");
   deleteIcon.addEventListener("click", () => {
+    // Check if the task was completed before deleting
+    const checkbox = Tasks.querySelector('input[type="checkbox"]');
+    if (checkbox.checked) {
+      completedPomodoros--;
+      completedDisplay.textContent = completedPomodoros;
+      localStorage.setItem("completedPomodoros", completedPomodoros);
+    }
+    
     Tasks.remove();
     const index = arr.indexOf(task);
     if (index > -1) {
       arr.splice(index, 1);
       localStorage.setItem("arr", JSON.stringify(arr));
-    }
-  });
-
-  taskTable.addEventListener("click", (event) => {
-    if (event.target.type === "checkbox") {
-      const taskText = event.target.nextElementSibling;
-      if (event.target.checked) {
-        taskText.style.textDecoration = "line-through";
-        taskText.style.opacity = "0.3";
-      } else {
-        taskText.style.textDecoration = "none";
-        taskText.style.opacity = "0.7";
-      }
+      pomodoroCount--;
+      pomodoroDisplay.textContent = pomodoroCount;
+      localStorage.setItem("pomodoroCount", pomodoroCount);
     }
   });
 
   taskTable.appendChild(Tasks);
 }
-
 
 function addTask() {
   const inputTask = document.getElementById("taskInput").value.trim();
@@ -79,6 +117,10 @@ function addTask() {
   localStorage.setItem("arr", JSON.stringify(arr));
   showList(inputTask);
   clearList();
+  
+  pomodoroCount++;
+  pomodoroDisplay.textContent = pomodoroCount;
+  localStorage.setItem("pomodoroCount", pomodoroCount);
 }
 
 taskAddButton.addEventListener("click", addTask);
