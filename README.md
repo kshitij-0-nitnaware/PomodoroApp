@@ -5,7 +5,7 @@ This is a simple yet powerful web-based **Pomodoro Timer** application with buil
 
 ## 🔗 Live Demo
 
-🚀 [Click here to try the live demo](https://your-live-demo-link.com)
+🚀 [Click here to try the live demo](https://kshitij-0-nitnaware.github.io/PomodoroApp/)
 
 ---
 
