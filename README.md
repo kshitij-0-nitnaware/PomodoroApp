@@ -1,86 +1,70 @@
-# Pomodoro App
 
-A simple and efficient Pomodoro timer with task management functionality.
+# Pomodoro Timer with Task Manager ⏱️📝
 
-## Features
+This is a simple yet powerful web-based **Pomodoro Timer** application with built-in **task management**, allowing users to stay focused and organized during work or study sessions.
 
-### Task Management
-- Add tasks with a clean, modern interface
-- Delete tasks with a single click
-- Mark tasks as complete with checkbox
-- Tasks persist even after page refresh (using localStorage)
-- Enter key support for adding tasks
+## 🔗 Live Demo
 
-### Task Statistics
-- Track total number of tasks
-- Count completed pomodoros
-- Statistics persist across sessions
-- Real-time updates when tasks are added/deleted/completed
+🚀 [Click here to try the live demo](https://your-live-demo-link.com)
 
-### Pomodoro Timer
-- 25-minute work timer
-- Play, pause, and reset functionality
-- Visual timer display
-- Next break countdown
-- Timer state management
+---
 
-### UI/UX Features
-- Responsive design
-- Clean and modern interface
-- Task strikethrough on completion
-- Opacity changes for completed tasks
-- Intuitive task management
+## 🛠️ Features
 
-## Recent Updates
-- Added task completion tracking
-- Implemented completed pomodoros counter
-- Added localStorage for task persistence
-- Added Enter key support for adding tasks
-- Improved task deletion with completion status check
-- Added real-time statistics updates
-- Fixed checkbox functionality
-- Improved task alignment and styling
+- ⏳ 25-minute Pomodoro work timer
+- ⏸️ Pause, reset, and auto-switch to break mode
+- ✅ Task list with checkbox and delete functionality
+- 📊 Pomodoro session stats tracking
+- 💾 Tasks and stats are saved in **LocalStorage**
+- 📱 Fully responsive design
+- 🎨 Clean UI with Google Fonts and Font Awesome icons
 
-## How to Use
+---
 
-1. **Adding Tasks**
-   - Type task in the input field
-   - Press Enter or click Add button
-   - Task will be added to the list
+## 📁 Project Structure
 
-2. **Managing Tasks**
-   - Click checkbox to mark task as complete
-   - Click trash icon to delete task
-   - Completed tasks show strikethrough
-   - Deleted tasks are removed from storage
+```
+pomodoro-app/
+├── index.html       # Main HTML file
+├── style.css        # Styling for the app
+├── app.js           # Core JavaScript logic
+└── README.md        # Project documentation
+```
 
-3. **Using Timer**
-   - Click Play to start timer
-   - Click Pause to pause
-   - Click Reset to reset timer
-   - Timer shows next break countdown
+---
 
-4. **Viewing Statistics**
-   - Total tasks count updates automatically
-   - Completed pomodoros count updates on task completion
-   - Statistics persist across sessions
 
-## Technical Details
 
-### Storage
-- Tasks are stored in localStorage
-- Task completion status is tracked
-- Statistics are persisted across sessions
 
-### Event Handling
-- Click events for task management
-- Keyboard events for task addition
-- Timer events for countdown
-- Checkbox events for completion status
+## 🚀 How to Use
 
-### Styling
-- Modern and clean interface
-- Responsive design
-- Visual feedback for user actions
-- Consistent spacing and alignment
+1. **Clone this repository**
+   ```bash
+   git clone https://github.com/your-username/pomodoro-app.git
+   ```
 
+2. **Open `index.html` in your browser**
+
+3. **Add tasks**, start your Pomodoro session, and stay productive!
+
+---
+
+## 🔧 Tech Stack
+
+- HTML
+- CSS
+- JavaScript (Vanilla)
+- LocalStorage API
+- Google Fonts (Inter, Poppins, Montserrat)
+- Font Awesome (for icons)
+
+---
+
+## 🙌 Author
+
+**Kshitij** — [GitHub Profile](https://github.com/kshitij-0-nitnaware)
+
+---
+
+
+> Feel free to fork this repo, suggest improvements, or use it as part of your productivity tools!

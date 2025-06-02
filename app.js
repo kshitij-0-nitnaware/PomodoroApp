@@ -5,10 +5,11 @@ let completedPomodoros = 0;
 let pomodoroDisplay = document.querySelector(".stats-section div:nth-child(2) p");
 let completedDisplay = document.querySelector(".stats-section div:first-child p");
 let taskTable = document.getElementById("taskTable");
+let modeDisplay = document.querySelector(".Timer-section p");
+let isWorkMode = true;
 
 let arr = [];
 
-// Clear completedPomodoros from localStorage
 localStorage.removeItem("completedPomodoros");
 completedDisplay.textContent = "0";
 
@@ -44,7 +45,7 @@ function clearList() {
   document.getElementById("taskInput").value = "";
 }
 
-// Move event listener outside
+
 taskTable.addEventListener("click", (event) => {
   if (event.target.type === "checkbox") {
     const taskText = event.target.nextElementSibling;
@@ -72,7 +73,7 @@ function showList(task) {
   Tasks.className = "Tasks";
   Tasks.style.marginBottom = "1rem";
 
-  // Create task content
+
   Tasks.innerHTML = `
     <div style="display: flex; align-items: center;">
       <input type="checkbox" id="Check"; style="transform: scale(1.5); margin-right: 10px; cursor: pointer;"/>
@@ -83,7 +84,6 @@ function showList(task) {
 
   const deleteIcon = Tasks.querySelector(".delete");
   deleteIcon.addEventListener("click", () => {
-    // Check if the task was completed before deleting
     const checkbox = Tasks.querySelector('input[type="checkbox"]');
     if (checkbox.checked) {
       completedPomodoros--;
@@ -125,7 +125,8 @@ function addTask() {
 
 taskAddButton.addEventListener("click", addTask);
 
-let totalTime = 25 * 60;
+
+let totalTime = 25 * 60; 
 let intervalId = null;
 
 const display = document.querySelector(".Timer-section h1");
@@ -169,7 +170,20 @@ function startTimer() {
         setButtonState(playButton, false);
         setButtonState(resetButton, false);
 
-        alert("Time's up!");
+        if (isWorkMode) {
+          isWorkMode = false;
+          modeDisplay.textContent = "Break Mode";
+          totalTime = 5 * 60;
+          updateDisplay();
+          alert("Work session complete! Starting break...");
+          startTimer(); 
+        } else {
+          isWorkMode = true;
+          modeDisplay.textContent = "Work Mode";
+          totalTime = 25 * 60;  
+          updateDisplay();
+          alert("Break complete! Ready for next work session?");
+        }
       }
     }, 1000);
   }
@@ -186,7 +200,10 @@ function pauseTimer() {
 function resetTimer() {
   clearInterval(intervalId);
   intervalId = null;
-  totalTime = 25 * 60;
+ 
+  isWorkMode = true;
+  modeDisplay.textContent = "Work Mode";
+  totalTime = 25 * 60;  
   updateDisplay();
 }
 
