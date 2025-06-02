@@ -40,7 +40,7 @@ pomodoro-app/
 
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/your-username/pomodoro-app.git
+   git clone https://github.com/kshitij-0-nitnaware/PomodoroApp.git
    ```
 
 2. **Open `index.html` in your browser**
